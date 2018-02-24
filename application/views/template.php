@@ -17,6 +17,7 @@
   	<script type="text/javascript" src="<?php echo base_url('themes/website/js/jquery.js');?>"></script>
     <script type="text/javascript" src="<?php echo base_url('themes/website/js/jquery.easing.1.3.js');?>"></script>
   	<script type="text/javascript" src="<?php echo base_url('themes/website/js/camera.js');?>"></script>
+    <script type="text/javascript" src="<?php echo base_url('themes/website/js/superfish.js');?>"></script>
     <script src="<?php echo base_url('themes/website/js/jquery.ui.totop.js');?>" type="text/javascript"></script>
     
   	<script>
@@ -71,7 +72,18 @@
                   <div class="container">
                       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>                                                   
                       <div class="nav-collapse nav-collapse_ collapse">
-                          <ul class="nav sf-menu">
+                      <?php 
+                          echo $this->multi_menu->render(
+                                array(
+                                  'nav_tag_open'        => '<ul class="nav sf-menu">',            
+                                  'parentl1_tag_open'   => '<li class="li-first">',
+                                  'parentl1_anchor'     => '<a href="%s">%s</a>',
+                                  'parent_tag_open'     => '<li class="sub-menu">',
+                                  'parent_anchor'       => '<a href="%s">%s</a>',
+                                  'children_tag_open'   => '<ul>'
+                              )
+                          ); ?>
+                          <!--<ul class="nav sf-menu">
                             <li class="active li-first"><a href="index.html">Home</a></li>
                             <li class="sub-menu"><a href="index-1.html">about</a>
                               <ul>
@@ -84,7 +96,7 @@
                             <li><a href="index-3.html">partners</a></li>
                             <li><a href="index-4.html">projects</a></li>
                             <li><a href="index-5.html">contacts</a></li>
-                          </ul>
+                          </ul>-->
                       </div>
                       <ul class="social-icons">
                           <li><a href="#"><img src="<?php echo base_url('themes/website/images/twitter.gif');?>" alt=""></a></li>
@@ -103,44 +115,47 @@
     <!--==============================End Nav=================================-->
 
     <!--==============================Slider=================================--> 
+    <?php 
+    if ($this->router->fetch_class() == "home") { ?>
     <div class="slider">
-    <div class="camera_wrap">
-        <div data-src="<?php echo base_url('themes/website/images/slide1.jpg');?>"></div>
-        <div data-src="<?php echo base_url('themes/website/images/slide2.jpg');?>">
-          <div class="camera_caption">
-            <div class="container">
-              <div class="row">
-                <div class="span12">
-                  <h2>Find</h2> <h3>the optimal<br/> solution</h3>
+      <div class="camera_wrap">
+          <div data-src="<?php echo base_url('themes/website/images/slide1.jpg');?>"></div>
+          <div data-src="<?php echo base_url('themes/website/images/slide2.jpg');?>">
+            <div class="camera_caption">
+              <div class="container">
+                <div class="row">
+                  <div class="span12">
+                    <h2>Find</h2> <h3>the optimal<br/> solution</h3>
+                  </div>
                 </div>
-              </div>
-            </div> 
-          </div>     
-        </div>
-        <div data-src="<?php echo base_url('themes/website/images/slide3.jpg');?>">
-          <div class="camera_caption">
-            <div class="container">
-              <div class="row">
-                <div class="span12">
-                  <h2>optimal</h2> <h3>communication<br/> solutions</h3>
-                </div>
-              </div>
-            </div>    
+              </div> 
+            </div>     
           </div>
-        </div>
-        <div data-src="<?php echo base_url('themes/website/images/slide4.jpg');?>">
-          <div class="camera_caption">
-            <div class="container">
-              <div class="row">
-                <div class="span12">
-                  <h2>optimal</h2> <h3>communication<br/> solutions</h3>
+          <div data-src="<?php echo base_url('themes/website/images/slide3.jpg');?>">
+            <div class="camera_caption">
+              <div class="container">
+                <div class="row">
+                  <div class="span12">
+                    <h2>optimal</h2> <h3>communication<br/> solutions</h3>
+                  </div>
                 </div>
-              </div>
-            </div>      
+              </div>    
+            </div>
           </div>
-        </div>
-    </div>
-</div>
+          <div data-src="<?php echo base_url('themes/website/images/slide4.jpg');?>">
+            <div class="camera_caption">
+              <div class="container">
+                <div class="row">
+                  <div class="span12">
+                    <h2>optimal</h2> <h3>communication<br/> solutions</h3>
+                  </div>
+                </div>
+              </div>      
+            </div>
+          </div>
+      </div>
+    <?php } ?>
+  </div>
 </header>
 
 <!--==============================Content=================================--> 
@@ -298,6 +313,6 @@
     </div>
    </div>
 </footer>
-<script type="<?php echo base_url('themes/website/text/javascript" src="js/bootstrap.js');?>"></script>
+<script type="text/javascript" src="<?php echo base_url('themes/website/js/bootstrap.js');?>"></script>
 </body>
 </html>

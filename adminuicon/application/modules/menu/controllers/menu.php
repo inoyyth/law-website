@@ -294,7 +294,7 @@ class Menu extends MX_Controller{
     
     function add(){
         $data['menu_type']=$this->db->query("select * from menu_type order by sort asc")->result();
-        $data['menu']=$this->db->query("select * from menu where menu_parent_id='0' order by id")->result();
+        $data['menu']=$this->db->query("select * from menu where menu_parent_id is null order by id")->result();
         $data['view']='add';
         $this->load->view('template',$data);
     }
@@ -313,8 +313,9 @@ class Menu extends MX_Controller{
         $menu_index=  substr($menu_parent, 0,1);
         $menu_parentx=  substr($menu_parent, 2,3);
         $position="";
-        if($menu_parent=="0"){
-            $pos=$this->db->query("select max(menu_position) as maxid from menu where menu_parent_id='0'")->row('maxid');
+        //die($menu_parentx);
+        if($menu_parentx=="0"){
+            $pos=$this->db->query("select max(menu_position) as maxid from menu where menu_parent_id is null")->row('maxid');
             $position=$pos + 1;
         }else{
             $pos=$this->db->query("select max(menu_position) as maxid from menu where menu_parent_id='$menu_parentx'")->row('maxid');
@@ -328,7 +329,7 @@ class Menu extends MX_Controller{
         }
         
         $data=array(
-            'menu_parent_id'=>$menu_parentx,
+            'menu_parent_id'=>($menu_parentx == 0 ? null : $menu_parentx),
             'menu_name'=>$menu_name,
             'menu_type'=>$menu_type,
             'menu_link'=>$menu_value,
@@ -383,7 +384,7 @@ class Menu extends MX_Controller{
         }
         
         $data=array(
-            'menu_parent_id'=>$menu_parentx,
+            'menu_parent_id'=>($menu_parentx == 0 ? null : $menu_parentx),
             'menu_name'=>$menu_name,
             'menu_type'=>$menu_type,
             'menu_link'=>$menu_value,
@@ -400,16 +401,24 @@ class Menu extends MX_Controller{
         }    
     }
     
-    function naik($menuid,$menuparent,$menuposition){
-        $posup=$this->db->query("select id,menu_position from menu where menu_parent_id='$menuparent' and menu_position < '$menuposition' ORDER BY menu_position desc limit 1")->row();
+    function naik($menuid,$menuparent,$menuposition) {
+        if ($menuparent != 0) {
+            $posup=$this->db->query("select id,menu_position from menu where menu_parent_id='$menuparent' and menu_position < '$menuposition' ORDER BY menu_position desc limit 1")->row();
+        } else {
+            $posup=$this->db->query("select id,menu_position from menu where menu_parent_id is null and menu_position < '$menuposition' ORDER BY menu_position desc limit 1")->row();
+        }
         $this->db->query("update menu set menu_position ='$menuposition' where id='$posup->id'");
         $this->db->query("update menu set menu_position ='$posup->menu_position' where id='$menuid'");
         redirect("menu/index");
         //echo "id".$posup->id ."- posisi".$posup->menu_position;
     }
     
-    function turun($menuid,$menuparent,$menuposition){
-        $posup=$this->db->query("select id,menu_position from menu where menu_parent_id='$menuparent' and menu_position > '$menuposition' ORDER BY menu_position asc limit 1")->row();
+    function turun($menuid,$menuparent,$menuposition) {
+        if ($menuparent != 0) {
+            $posup=$this->db->query("select id,menu_position from menu where menu_parent_id='$menuparent' and menu_position > '$menuposition' ORDER BY menu_position asc limit 1")->row();
+        } else {
+            $posup=$this->db->query("select id,menu_position from menu where menu_parent_id is null and menu_position > '$menuposition' ORDER BY menu_position asc limit 1")->row();
+        }
         $this->db->query("update menu set menu_position ='$menuposition' where id='$posup->id'");
         $this->db->query("update menu set menu_position ='$posup->menu_position' where id='$menuid'");
         redirect("menu/index");

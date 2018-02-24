@@ -211,6 +211,14 @@ class Multi_menu {
 	private $icon_position           = 'left';
 
 	/**
+	 * Array key that logged menu
+	 * Ex: $items['menu_islogin'] = 1
+	 * 
+	 * @var int
+	 */
+	private $menu_islogin = 'is_login';
+
+	/**
 	 * Base url of the image icon (draft)
 	 * It would be use codeigniter base url if not define
 	 * Ex: http://localhost/assets/img
@@ -251,8 +259,10 @@ class Multi_menu {
 		// just in case url helper has not load yet
 		$this->ci =& get_instance();
 		$this->ci->load->helper('url');
+		$this->ci->load->library('session');
 
 		$this->initialize($config);
+		
 	}
 
 	/**
@@ -341,11 +351,19 @@ class Multi_menu {
 
 		foreach ($data as $item) 
 		{
-			if ($item[$this->menu_parent] == $parent) 
-			{
-				$items[$item[$this->menu_id]] = $item;
-				$items[$item[$this->menu_id]]['children'] = $this->prepare_items($data, $item[$this->menu_id]);
-			}	
+			if ($this->ci->session->userdata('logged_in_front') == true) {
+				if ($item[$this->menu_parent] == $parent && $item[$this->menu_islogin] == 1) 
+				{
+					$items[$item[$this->menu_id]] = $item;
+					$items[$item[$this->menu_id]]['children'] = $this->prepare_items($data, $item[$this->menu_id]);
+				}	
+			} else {
+			if ($item[$this->menu_parent] == $parent && $item[$this->menu_islogin] == 0) 
+				{
+					$items[$item[$this->menu_id]] = $item;
+					$items[$item[$this->menu_id]]['children'] = $this->prepare_items($data, $item[$this->menu_id]);
+				}
+			}
 		}
 
 		// after items constructed
@@ -510,7 +528,8 @@ class Multi_menu {
 	 */
 	private function set_active($html, $slug)
 	{
-		$segment = $this->ci->uri->segment($this->uri_segment);
+		//$segment = $this->ci->uri->segment($this->uri_segment);
+		$segment = $this->ci->router->fetch_class();
 
 		if ( ($this->item_active != '' && $slug == $this->item_active && empty($segment)) || $slug == $segment) 
 		{

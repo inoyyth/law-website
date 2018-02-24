@@ -6,6 +6,7 @@
     // $config["menu_icon"] 		 = 'icon';
     $config["menu_key"]              = 'menu_link';
     $config["menu_order"]            = 'menu_position';
+    $config["menu_islogin"]          = 'menu_level';
 
     $config["nav_tag_open"]          = '<ul>';
     $config["nav_tag_close"]         = '</ul>';

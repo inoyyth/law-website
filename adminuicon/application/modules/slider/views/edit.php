@@ -17,7 +17,7 @@
                     <input type="text" class="form-control" name="title" value="<?= $list_detail->title; ?>"  required/>
                 </div>
                 <div class="form-group">
-                    <label>Image (sugest size 1920 x 717)</label>
+                <label>Image (sugest size <?php echo $this->config->item('home_slider_size');?>)</label>
                     <input type="text" class="form-control" name="image" onclick="TampilModel('<?= base_url(); ?>slider/image_browse');" id="thumbnail" value="<?= $list_detail->image_slider; ?>" required readonly/>
                     <div style="margin-top: 10px;">
                         <img src="<?= base_url(); ?>assets/elFinder-2.1.24/<?= $list_detail->image_slider; ?>" id="blah1" height="180px" width="350px" style="border: solid;">
@@ -29,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label>Description</label>
-                    <textarea name="slider_description" class="form-control" required="true"><?php echo $list_detail->slider_description; ?></textarea>
+                    <textarea name="slider_description" class="form-control"><?php echo $list_detail->slider_description; ?></textarea>
                 </div>
                 <div class="form-group">
                     <label>Window Target</label>

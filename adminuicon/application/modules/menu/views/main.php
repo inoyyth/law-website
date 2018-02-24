@@ -46,11 +46,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data->menu_position!=$min->min_pos){?>
-                            <button class="btn btn-primary btn-xs" onclick="naik('<?=$data->id;?>','<?=$data->menu_parent_id;?>','<?=$data->menu_position;?>');"><i class="fa fa-angle-double-up"></i></button>
+                            <button class="btn btn-primary btn-xs" onclick="naik('<?=$data->id;?>','<?= isset($data->menu_parent_id) ? $data->menu_parent_id : 0;?>','<?=$data->menu_position;?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             if($data->menu_position!=$max->max_pos){?>
-                           <button class="btn btn-primary btn-xs" onclick="turun('<?=$data->id;?>','<?=$data->menu_parent_id;?>','<?=$data->menu_position;?>');"><i class="fa fa-angle-double-down"></i></button>
+                           <button class="btn btn-primary btn-xs" onclick="turun('<?=$data->id;?>','<?= isset($data->menu_parent_id) ? $data->menu_parent_id : 0;?>','<?=$data->menu_position;?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             ?>
@@ -80,11 +80,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data1['menu_position']!=$dmax1['max_pos']){?>
-                            <button class="btn btn-warning btn-xs" onclick="turun('<?=$data1['id'];?>','<?=$data1['menu_parent_id'];?>','<?=$data1['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
+                            <button class="btn btn-warning btn-xs" onclick="turun('<?=$data1['id'];?>','<?= isset($data1['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data1['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             if($data1['menu_position']!=$dmin1['min_pos']){?>
-                           <button class="btn btn-warning btn-xs" onclick="naik('<?=$data1['id'];?>','<?=$data1['menu_parent_id'];?>','<?=$data1['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
+                           <button class="btn btn-warning btn-xs" onclick="naik('<?=$data1['id'];?>','<?= isset($data1['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data1['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             ?>
@@ -114,11 +114,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data2['menu_position']!=$dmax2['max_pos']){?>
-                            <button class="btn btn-danger btn-xs" onclick="turun('<?=$data2['id'];?>','<?=$data2['menu_parent_id'];?>','<?=$data2['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
+                            <button class="btn btn-danger btn-xs" onclick="turun('<?=$data2['id'];?>','<?= isset($data2['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data2['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             if($data2['menu_position']!=$dmin2['min_pos']){?>
-                           <button class="btn btn-danger btn-xs" onclick="naik('<?=$data2['id'];?>','<?=$data2['menu_parent_id'];?>','<?=$data2['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
+                           <button class="btn btn-danger btn-xs" onclick="naik('<?=$data2['id'];?>','<?= isset($data2['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data2['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             ?>
@@ -148,11 +148,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data3['menu_position']!=$dmax3['max_pos']){?>
-                            <button class="btn btn-default btn-xs" onclick="turun('<?=$data3['id'];?>','<?=$data3['menu_parent_id'];?>','<?=$data3['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
+                            <button class="btn btn-default btn-xs" onclick="turun('<?=$data3['id'];?>','<?= isset($data3['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data3['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             if($data3['menu_position']!=$dmin3['min_pos']){?>
-                           <button class="btn btn-default btn-xs" onclick="naik('<?=$data3['id'];?>','<?=$data3['menu_parent_id'];?>','<?=$data3['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
+                           <button class="btn btn-default btn-xs" onclick="naik('<?=$data3['id'];?>','<?= isset($data3['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data3['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             ?>
@@ -182,11 +182,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data4['menu_position']!=$dmax4['max_pos']){?>
-                            <button class="btn btn-success btn-xs" onclick="turun('<?=$data4['id'];?>','<?=$data4['menu_parent_id'];?>','<?=$data4['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
+                            <button class="btn btn-success btn-xs" onclick="turun('<?=$data4['id'];?>','<?= isset($data4['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data4['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             if($data4['menu_position']!=$dmin4['min_pos']){?>
-                           <button class="btn btn-success btn-xs" onclick="naik('<?=$data4['id'];?>','<?=$data4['menu_parent_id'];?>','<?=$data4['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
+                           <button class="btn btn-success btn-xs" onclick="naik('<?=$data4['id'];?>','<?= isset($data4['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data4['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             ?>
@@ -216,11 +216,11 @@
                         <td style="text-align: center;">
                             <?php 
                             if($data5['menu_position']!=$dmax5['max_pos']){?>
-                            <button class="btn btn-default btn-xs" onclick="turun('<?=$data5['id'];?>','<?=$data5['menu_parent_id'];?>','<?=$data5['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
+                            <button class="btn btn-default btn-xs" onclick="turun('<?=$data5['id'];?>','<?= isset($data5['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data5['menu_position'];?>');"><i class="fa fa-angle-double-down"></i></button>
                             <?php
                             }
                             if($data5['menu_position']!=$dmin5['min_pos']){?>
-                           <button class="btn btn-default btn-xs" onclick="naik('<?=$data5['id'];?>','<?=$data5['menu_parent_id'];?>','<?=$data5['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
+                           <button class="btn btn-default btn-xs" onclick="naik('<?=$data5['id'];?>','<?= isset($data5['menu_parent_id']) ? $data1['menu_parent_id']: 0;?>','<?=$data5['menu_position'];?>');"><i class="fa fa-angle-double-up"></i></button>
                             <?php
                             }
                             ?>

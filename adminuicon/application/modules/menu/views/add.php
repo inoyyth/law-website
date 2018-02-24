@@ -136,17 +136,17 @@ $(document).ready(function(){
         }if(param==="9"){  
             $("#menu_value").attr('readonly','true');
             $("#menu_value").val('-');
-            $("#kodex").val("latest_product");
+            $("#kodex").val("latest-product");
             $("#linkx").hide();
         }if(param==="10"){  
             $("#menu_value").attr('readonly','true');
             $("#menu_value").val('-');
-            $("#kodex").val("popular_product");
+            $("#kodex").val("popular-product");
             $("#linkx").hide();
         }if(param==="11"){  
             $("#menu_value").attr('readonly','true');
             $("#menu_value").val('-');
-            $("#kodex").val("contact_us");
+            $("#kodex").val("contact-us");
             $("#linkx").hide();
         }if(param==="12"){
             var linkx = "'subcategory_article'";   

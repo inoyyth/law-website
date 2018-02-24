@@ -18,7 +18,7 @@
                         <input type="text" class="form-control" name="title"  required/>
                     </div>
                     <div class="form-group">
-                        <label>Image (sugest size 1920 x 717)</label>
+                        <label>Image (sugest size <?php echo $this->config->item('home_slider_size');?>)</label>
                         <input type="text" class="form-control" id="thumbnail" name="image" onclick="TampilModel('<?= base_url(); ?>slider/image_browse');" required readonly/>
                         <div style="margin-top: 10px;">
                             <img src="" id="blah1" height="180px" width="350px" style="border: solid;">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="form-group">
                         <label>Description</label>
-                        <textarea name="slider_description" class="form-control" required="true"></textarea>
+                        <textarea name="slider_description" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <label>Window Target</label>

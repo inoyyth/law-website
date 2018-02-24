@@ -41,6 +41,8 @@
 $route['default_controller'] = "home";
 $route['404_override'] = 'error404';
 
+$route['contact-us'] = 'contact_us';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */
