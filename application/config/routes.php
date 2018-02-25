@@ -45,6 +45,9 @@ $route['contact-us'] = 'contact_us';
 
 //member
 $route['register'] = 'member/register';
+$route['sign-in'] = 'member/login';
+$route['sign-out'] = 'member/logout';
+
 
 
 /* End of file routes.php */

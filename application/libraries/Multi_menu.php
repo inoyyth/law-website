@@ -335,6 +335,32 @@ class Multi_menu {
      */
     public function set_items($items = array())
     {
+		if ($this->ci->session->userdata('logged_in_front') == true) {
+			foreach ($items as $k=>$v) {
+                if ($v['menu_type'] == 14 || $v['menu_type'] == 15) {
+					unset($items[$k]);
+				}
+			}
+
+			$push_array = array(
+				'id' => 1000,
+				'menu_parent_id' => null,
+				'menu_type' => 0,
+				'menu_link' => 'sign-out',
+				'menu_desc' => 'logout',
+				'menu_open' => 0,
+				'menu_index' => 0,
+				'menu_status' => 'Y',
+				'menu_position' => 100,
+				'is_login' => 1,
+				'menu_level' => 1,
+				'menu_name' => 'Sign Out'
+			);
+			array_push($items,$push_array);
+		}
+		// echo"<pre>";
+		// var_dump($items);
+		// echo"</pre>";
 		$this->items = $items;
     }
 
@@ -357,13 +383,13 @@ class Multi_menu {
 					$items[$item[$this->menu_id]] = $item;
 					$items[$item[$this->menu_id]]['children'] = $this->prepare_items($data, $item[$this->menu_id]);
 				}	
-			} else {
+			}
 			if ($item[$this->menu_parent] == $parent && $item[$this->menu_islogin] == 0) 
 				{
 					$items[$item[$this->menu_id]] = $item;
 					$items[$item[$this->menu_id]]['children'] = $this->prepare_items($data, $item[$this->menu_id]);
 				}
-			}
+
 		}
 
 		// after items constructed

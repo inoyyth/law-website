@@ -34,4 +34,22 @@ class M_member extends CI_Model{
         return true;
     }
 
+    function login() {
+        $where = array(
+            'email_custdetail' => $this->input->post('username'),
+            'password_custdetail' => md5($this->input->post('password')),
+            'activation_custdetail' => 1,
+            'status' => 'Y'
+        );
+        $this->db->select('*');
+        $this->db->from('cust_detail');
+        $this->db->where($where);
+        $sql = $this->db->get()->result_array();
+
+        if (count($sql) >= 1) {
+            return $sql;
+        }
+        return false;
+    }
+
 }

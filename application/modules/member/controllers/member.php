@@ -8,6 +8,7 @@ class Member extends MX_Controller{
         $this->load->model('main_model');
         $this->load->model('m_member');
         $this->load->library('email');
+        $this->load->library('session');
     }
         
     function register() {
@@ -43,6 +44,42 @@ class Member extends MX_Controller{
         $this->email->message($msg);  
 
         $this->email->send();
+    }
+
+    public function login() {
+        if ($_POST) {
+            $dataLog = $this->m_member->login();
+            if ($dataLog) {
+                $sess_array = array();
+                foreach($dataLog as $row) {
+                    //create the session
+                    $sess_arrayx = array(
+                        'id_login' => $row['id'],
+                        'firstname_login' => $row['firstname_custdetail'],
+                        'lastname_login' => $row['lastname_custdetail'],
+                        'email_login'=>$row['email_custdetail']
+                    );
+                 //set session with value from database
+                 $this->session->set_userdata('logged_in_front',$sess_arrayx);
+                 }
+                $response = array('code' => 200, 'message' => 'Login is success, you will redirect in a moment');
+        } else {
+            $response = array('code' => 500, 'message' => 'Login is failed, username or password invalid!');
+        }
+        echo json_encode($response);
+        } else {
+            show_404();
+        }
+    }
+
+    function logout() {
+        $this->session->unset_userdata('logged_in_front');
+        //$this->session->destroy();
+        redirect('home');
+    }
+
+    function activation($key) {
+
     }
 
 }
