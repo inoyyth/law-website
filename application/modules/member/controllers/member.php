@@ -9,6 +9,7 @@ class Member extends MX_Controller{
         $this->load->model('m_member');
         $this->load->library('email');
         $this->load->library('session');
+        $this->load->library('My_encrypt');
     }
         
     function register() {
@@ -36,6 +37,7 @@ class Member extends MX_Controller{
     }
 
     private function __sendMail($data) {
+        $data['encrypt'] = $this->my_encrypt->encode($data['email']);
         $msg = $this->load->view('member/email_activation',$data,true);
         $this->email->from('inoycms1@gmail.com', 'Law Website');
         $this->email->to($data['email']); 
@@ -79,7 +81,16 @@ class Member extends MX_Controller{
     }
 
     function activation($key) {
-
+        $email = $this->my_encrypt->decode($key);
+        if ($this->m_member->activation($email)) {
+            $data['status'] = 'success';
+            $data['message'] = 'Activation success, maybe activation time is close';
+        } else {
+            $data['status'] = 'error';
+            $data['message'] = 'Activation failed, maybe activation time is close';
+        }
+        $data['view'] = 'member/activation_page';
+        $this->load->view('template',$data);
     }
 
 }

@@ -2,7 +2,7 @@
 
 class M_member extends CI_Model{
 
-    function save_register() {
+    public function save_register() {
 
         $data = array(
             'firstname_custdetail' => $this->input->post('first_name'),
@@ -21,7 +21,7 @@ class M_member extends CI_Model{
 
     }
 
-    function duplicate_email() {
+    public function duplicate_email() {
         $where = array(
             'email_custdetail' => $this->input->post('email')
         );
@@ -34,7 +34,7 @@ class M_member extends CI_Model{
         return true;
     }
 
-    function login() {
+    public function login() {
         $where = array(
             'email_custdetail' => $this->input->post('username'),
             'password_custdetail' => md5($this->input->post('password')),
@@ -48,6 +48,22 @@ class M_member extends CI_Model{
 
         if (count($sql) >= 1) {
             return $sql;
+        }
+        return false;
+    }
+
+    public function activation($email) {
+        $where = array(
+            'email_custdetail' => $email,
+            'activation_custdetail' => 0,
+            'status' => 'Y'
+        );
+        $this->db->where($where);
+        $this->db->from('cust_detail');
+        $count = $this->db->count_all_results();
+        if ($count > 0) {
+            $this->db->update('cust_detail',array('activation_custdetail' => 1),array('email_custdetail' => $email));
+            return true;
         }
         return false;
     }
