@@ -6,17 +6,17 @@ class M_member extends CI_Model{
 
         $data = array(
             'firstname_custdetail' => $this->input->post('first_name'),
-            'lastname_custdetail' => $this->input->post('first_name'),
-            'email_custdetail' => $this->input->post('first_name'),
-            'mobile_custdetail' => $this->input->post('first_name'),
-            'password_custdetail' => md5($this->input->post('first_name')),
+            'lastname_custdetail' => $this->input->post('last_name'),
+            'email_custdetail' => $this->input->post('email'),
+            'mobile_custdetail' => $this->input->post('phone'),
+            'password_custdetail' => md5($this->input->post('password')),
             'sys_create_date' => date('Y-m-d H:i:s')
         );
 
         if ($this->db->insert('cust_detail', $data)) {
             return true;
         }
-        
+
         return false;
 
     }

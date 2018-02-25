@@ -1,24 +1,15 @@
 <div class="row">
-    <?php if($this->session->flashdata('success')) { ?>
-        <div class="span4 offset4">
-            <div class="alert alert-success">
-                <?php echo $this->session->flashdata('error'); ?>
-            </div>
+    <div class="span4 offset4">
+        <div class="alert" style="display:none;">
+            
         </div>
-    <?php } ?>
-    <?php if($this->session->flashdata('error')) { ?>
-        <div class="span offset4">
-            <div class="alert alert-success">
-                <?php echo $this->session->flashdata('error'); ?>
-            </div>
-        </div>
-    <?php } ?>
+    </div>
     <div class="span6 offset4">
     <h2>Sign Up</h2>
     <div id="note"></div>
         <div id="fields" class="contact-form">
             <?php 
-                echo form_open('register/save_register',array(
+                echo form_open('member/save_register',array(
                     'id' => 'form-register',
                     'class' => 'form-horizontal'
                 ));
@@ -148,10 +139,35 @@ $( document ).ready( function () {
             $( element ).parents( ".col-sm-5" ).addClass( "has-success" ).removeClass( "has-error" );
         },
         submitHandler: function(form) {
-            $("#myButton").button('loading');
-            $(form).submit();
+            $.ajax({
+                type: "POST",
+                url: $("#form-register").attr( 'action' ),
+                data: $("#form-register").serialize(),
+                dataType: 'json',
+            beforeSend: function(e) {
+                $("#myButton").button('loading');
+            },
+            success: function(data) {
+                if (data.code == 200) {
+                    $(".alert").removeClass('alert-error').addClass('alert-success').html(data.message);
+                    $("#form-register")[0].reset();
+                } else {
+                    $(".alert").addClass('alert-success').addClass('alert-error').html(data.message);
+                }
+                $(".alert").show();
+                $("#myButton").button('reset');
+            },
+            error: function(e) {
+                //console.log(e);
+            }
+        });
+        return false;
         }
     });
+
+    //if (formValidation) {
+        
+    //}
 });
 
 </script>

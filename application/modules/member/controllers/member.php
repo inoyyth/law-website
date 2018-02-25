@@ -7,6 +7,7 @@ class Member extends MX_Controller{
         
         $this->load->model('main_model');
         $this->load->model('m_member');
+        $this->load->library('email');
     }
         
     function register() {
@@ -16,19 +17,32 @@ class Member extends MX_Controller{
 
     function save_register() {
         if ($_POST) {
-            if(!$this->member->duplicate_email()) {
-                $this->session->set_flashdata('error', 'Data Gagal Di Simpan email sudah pernah didaftarkan!');
-                redirect("register");
-            }
-            if ($this->m_member->save_register()) {
-                $this->session->set_flashdata('success', 'Data Berhasil Di Simpan, silahkan periksa email anda untuk melakukan aktivasi!');
+            if(!$this->m_member->duplicate_email()) {
+                $response = array('code' => 409, 'message' => 'Email is registered');
             } else {
-                $this->session->set_flashdata('error', 'Data Gagal Di Simpan !');
+                if ($this->m_member->save_register()) {
+                    $response = array('code' => 200, 'message' => 'Register is success, please check your email for activation');
+                    $data = array('email' => $this->input->post('email'),'name' => $this->input->post('first_name'));
+                    $this->__sendMail($data);
+                } else {
+                    $response = array('code' => 500, 'message' => 'Register is failed, try again later');
+                }
             }
-            redirect("register");
+            echo json_encode($response);
         } else {
             show_404();
         }
+    }
+
+    private function __sendMail($data) {
+        $msg = $this->load->view('member/email_activation',$data,true);
+        $this->email->from('inoycms1@gmail.com', 'Law Website');
+        $this->email->to($data['email']); 
+
+        $this->email->subject('Activation Account');
+        $this->email->message($msg);  
+
+        $this->email->send();
     }
 
 }
