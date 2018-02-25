@@ -313,7 +313,6 @@ class Menu extends MX_Controller{
         $menu_index=  substr($menu_parent, 0,1);
         $menu_parentx=  substr($menu_parent, 2,3);
         $position="";
-        //die($menu_parentx);
         if($menu_parentx=="0"){
             $pos=$this->db->query("select max(menu_position) as maxid from menu where menu_parent_id is null")->row('maxid');
             $position=$pos + 1;
@@ -349,7 +348,7 @@ class Menu extends MX_Controller{
         $data['list']=$this->db->query("select * from menu where id='$id'")->row();
         $mlist=$this->db->query("select * from menu where id='$id'")->row();
         $data['menu_type']=$this->db->query("select * from menu_type order by sort asc")->result();
-        $data['menu']=$this->db->query("select * from menu where menu_parent_id='0' and menu_index='0' and id not in ($mlist->id) order by id")->result();
+        $data['menu']=$this->db->query("select * from menu where menu_parent_id is null and menu_index='0' and id not in ($mlist->id) order by id")->result();
         $data['view']='edit';
         $this->load->view('template',$data);
     }
@@ -370,7 +369,11 @@ class Menu extends MX_Controller{
         $menu_parentx=  substr($menu_parent, 2,3);
         $position="";
             $cek_menuparent=$this->db->query("select * from menu where id='$id'")->row();
-            if($menu_parentx==$cek_menuparent->menu_parent_id){
+            $menu_parentx = $menu_parentx == '0' ? null : $menu_parentx;
+            if ($menu_parentx == null) {
+                $ps=$this->db->query("select max(menu_position) as maxpos from menu where menu_parent_id is null")->row();
+                $position=$ps->maxpos+1;
+            } else if($menu_parentx==$cek_menuparent->menu_parent_id){
                 $position=$cek_menuparent->menu_position;
             }else{
                 $ps=$this->db->query("select max(menu_position) as maxpos from menu where menu_parent_id='$menu_parentx'")->row();

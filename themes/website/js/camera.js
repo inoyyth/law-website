@@ -1,53 +1,96 @@
-// Camera slideshow v1.3.3 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.4+
+// Camera slideshow v1.4.0 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.9.1+
 // Copyright (c) 2012 by Manuel Masia - www.pixedelic.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 ;(function($){$.fn.camera = function(opts, callback) {
 	
 	var defaults = {
-		alignment			: 'topCenter', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight		
-		autoAdvance			: true,	//true, false		
-		mobileAutoAdvance	: true, //true, false. Auto-advancing for mobile devices		
-		barDirection		: 'leftToRight',	//'leftToRight', 'rightToLeft', 'topToBottom', 'bottomToTop'		
-		barPosition			: 'bottom',	//'bottom', 'left', 'top', 'right'		
-		cols				: 6,		
-		easing				: 'easeInOutExpo',	//for the complete list http://jqueryui.com/demos/effect/easing.html		
-		mobileEasing		: '',	//leave empty if you want to display the same easing on mobile devices and on desktop etc.		
+		alignment			: 'center', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight
+		
+		autoAdvance			: true,	//true, false
+		
+		mobileAutoAdvance	: true, //true, false. Auto-advancing for mobile devices
+		
+		barDirection		: 'leftToRight',	//'leftToRight', 'rightToLeft', 'topToBottom', 'bottomToTop'
+		
+		barPosition			: 'bottom',	//'bottom', 'left', 'top', 'right'
+		
+		cols				: 6,
+		
+		easing				: 'easeInOutExpo',	//for the complete list http://jqueryui.com/demos/effect/easing.html
+		
+		mobileEasing		: '',	//leave empty if you want to display the same easing on mobile devices and on desktop etc.
+		
 		fx					: 'simpleFade',	//'random','simpleFade', 'curtainTopLeft', 'curtainTopRight', 'curtainBottomLeft', 'curtainBottomRight', 'curtainSliceLeft', 'curtainSliceRight', 'blindCurtainTopLeft', 'blindCurtainTopRight', 'blindCurtainBottomLeft', 'blindCurtainBottomRight', 'blindCurtainSliceBottom', 'blindCurtainSliceTop', 'stampede', 'mosaic', 'mosaicReverse', 'mosaicRandom', 'mosaicSpiral', 'mosaicSpiralReverse', 'topLeftBottomRight', 'bottomRightTopLeft', 'bottomLeftTopRight', 'bottomLeftTopRight'
 										//you can also use more than one effect, just separate them with commas: 'simpleFade, scrollRight, scrollBottom'
+
 		mobileFx			: '',	//leave empty if you want to display the same effect on mobile devices and on desktop etc.
-		gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod		
-		height				: '28.85%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'		
-		imagePath			: 'img/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)		
-		hover				: false,	//true, false. Puase on state hover. Not available for mobile devices				
-		loader				: 'none',	//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)		
-		loaderColor			: '#eeeeee', 		
-		loaderBgColor		: '#222222', 		
-		loaderOpacity		: .8,	//0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1		
-		loaderPadding		: 2,	//how many empty pixels you want to display between the loader and its background		
-		loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter				
-		minHeight			: '200px',	//you can also leave it blank		
-		navigation			: false,	//true or false, to display or not the navigation buttons		
-		navigationHover		: false,	//if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always		
-		mobileNavHover		: true,	//same as above, but only for mobile devices		
-		opacityOnGrid		: false,	//true, false. Decide to apply a fade effect to blocks and slices: if your slideshow is fullscreen or simply big, I recommend to set it false to have a smoother effect 		
-		overlayer			: false,	//a layer on the images to prevent the users grab them simply by clicking the right button of their mouse (.camera_overlayer)		
-		pagination			: true,		
-		playPause			: false,	//true or false, to display or not the play/pause buttons		
-		pauseOnClick		: false,	//true, false. It stops the slideshow when you click the sliders.		
-		pieDiameter			: 38,		
-		piePosition			: 'rightTop',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'		
-		portrait			: false, //true, false. Select true if you don't want that your images are cropped		
-		rows				: 4,		
-		slicedCols			: 12,	//if 0 the same value of cols		
-		slicedRows			: 8,	//if 0 the same value of rows		
-		slideOn				: 'random',	//next, prev, random: decide if the transition effect will be applied to the current (prev) or the next slide		
-		thumbnails			: false,		
-		time				: 7000,	//milliseconds between the end of the sliding effect and the start of the nex one		
-		transPeriod			: 800,	//lenght of the sliding effect in milliseconds		
+
+		gridDifference		: 250,	//to make the grid blocks slower than the slices, this value must be smaller than transPeriod
+		
+		height				: '28.5%',	//here you can type pixels (for instance '300px'), a percentage (relative to the width of the slideshow, for instance '50%') or 'auto'
+		
+		imagePath			: 'images/',	//he path to the image folder (it serves for the blank.gif, when you want to display videos)
+		
+		hover				: true,	//true, false. Puase on state hover. Not available for mobile devices
+				
+		loader				: 'pie',	//pie, bar, none (even if you choose "pie", old browsers like IE8- can't display it... they will display always a loading bar)
+		
+		loaderColor			: '#eeeeee', 
+		
+		loaderBgColor		: '#222222', 
+		
+		loaderOpacity		: .8,	//0, .1, .2, .3, .4, .5, .6, .7, .8, .9, 1
+		
+		loaderPadding		: 2,	//how many empty pixels you want to display between the loader and its background
+		
+		loaderStroke		: 7,	//the thickness both of the pie loader and of the bar loader. Remember: for the pie, the loader thickness must be less than a half of the pie diameter
+				
+		minHeight			: '200px',	//you can also leave it blank
+		
+		navigation			: true,	//true or false, to display or not the navigation buttons
+		
+		navigationHover		: true,	//if true the navigation button (prev, next and play/stop buttons) will be visible on hover state only, if false they will be visible always
+		
+		mobileNavHover		: true,	//same as above, but only for mobile devices
+		
+		opacityOnGrid		: false,	//true, false. Decide to apply a fade effect to blocks and slices: if your slideshow is fullscreen or simply big, I recommend to set it false to have a smoother effect 
+		
+		overlayer			: true,	//a layer on the images to prevent the users grab them simply by clicking the right button of their mouse (.camera_overlayer)
+		
+		pagination			: true,
+		
+		playPause			: true,	//true or false, to display or not the play/pause buttons
+		
+		pauseOnClick		: true,	//true, false. It stops the slideshow when you click the sliders.
+		
+		pieDiameter			: 38,
+		
+		piePosition			: 'rightTop',	//'rightTop', 'leftTop', 'leftBottom', 'rightBottom'
+		
+		portrait			: false, //true, false. Select true if you don't want that your images are cropped
+		
+		rows				: 4,
+		
+		slicedCols			: 12,	//if 0 the same value of cols
+		
+		slicedRows			: 8,	//if 0 the same value of rows
+		
+		slideOn				: 'random',	//next, prev, random: decide if the transition effect will be applied to the current (prev) or the next slide
+		
+		thumbnails			: false,
+		
+		time				: 7000,	//milliseconds between the end of the sliding effect and the start of the nex one
+		
+		transPeriod			: 1500,	//lenght of the sliding effect in milliseconds
+		
 ////////callbacks
+
 		onEndTransition		: function() {  },	//this callback is invoked when the transition effect ends
-		onLoaded			: function() {  },	//this callback is invoked when the image on a slide has completely loaded		
-		onStartLoading		: function() {  },	//this callback is invoked when the image on a slide start loading		
+
+		onLoaded			: function() {  },	//this callback is invoked when the image on a slide has completely loaded
+		
+		onStartLoading		: function() {  },	//this callback is invoked when the image on a slide start loading
+		
 		onStartTransition	: function() {  }	//this callback is invoked when the transition effect starts
 
     };
@@ -64,6 +107,11 @@
 		}
 	}
 
+	$.support.borderRadius = false;
+	$.each(['borderRadius','BorderRadius','MozBorderRadius','WebkitBorderRadius','OBorderRadius','KhtmlBorderRadius'], function() {
+		if(document.body.style[this] !== undefined) $.support.borderRadius = true;
+	});
+
 	var opts = $.extend({}, defaults, opts);
 	
 	var wrap = $(this).addClass('camera_wrap');
@@ -75,6 +123,7 @@
 		);
 		
 	var fakeHover = $('.camera_fakehover',wrap);
+	var fakeHoverSelector = ('.camera_fakehover',wrap);
 	
 	fakeHover.append(
 		'<div class="camera_target"></div>'
@@ -90,7 +139,7 @@
 		
 	var loader;
 	
-	if(opts.loader=='pie' && $.browser.msie && $.browser.version < 9){
+	if(opts.loader=='pie' && !$.support.borderRadius){
 		loader = 'bar';
 	} else {
 		loader = opts.loader;
@@ -418,6 +467,7 @@
 							t.css({
 								'height' : hT*r,
 								'margin-left' : 0,
+								'margin-right' : 0,
 								'margin-top' : mTop,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -459,6 +509,7 @@
 							t.css({
 								'height' : h,
 								'margin-left' : mLeft,
+								'margin-right' : mLeft,
 								'margin-top' : 0,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -501,6 +552,7 @@
 							t.css({
 								'height' : h,
 								'margin-left' : mLeft,
+								'margin-right' : mLeft,
 								'margin-top' : 0,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -542,6 +594,7 @@
 							t.css({
 								'height' : hT*r,
 								'margin-left' : 0,
+								'margin-right' : 0,
 								'margin-top' : mTop,
 								'position' : 'absolute',
 								'visibility' : 'visible',
@@ -677,12 +730,12 @@
 			$(nextNav,wrap).animate({opacity:0},0);
 			$(commands,wrap).animate({opacity:0},0);
 			if(isMobile()){
-				fakeHover.live('vmouseover',function(){
+				$(document).on('vmouseover',fakeHoverSelector,function(){
 					$(prevNav,wrap).animate({opacity:1},200);
 					$(nextNav,wrap).animate({opacity:1},200);
 					$(commands,wrap).animate({opacity:1},200);
 				});
-				fakeHover.live('vmouseout',function(){
+				$(document).on('vmouseout',fakeHoverSelector,function(){
 					$(prevNav,wrap).delay(500).animate({opacity:0},200);
 					$(nextNav,wrap).delay(500).animate({opacity:0},200);
 					$(commands,wrap).delay(500).animate({opacity:0},200);
@@ -701,7 +754,7 @@
 		}
 		
 	
-		$('.camera_stop',camera_thumbs_wrap).live('click',function(){
+		camera_thumbs_wrap.on('click','.camera_stop',function(){
 			autoAdv = false;
 			elem.addClass('paused');
 			if($('.camera_stop',camera_thumbs_wrap).length){
@@ -717,7 +770,7 @@
 			}
 		});
 	
-		$('.camera_play',camera_thumbs_wrap).live('click',function(){
+		camera_thumbs_wrap.on('click','.camera_play',function(){
 			autoAdv = true;
 			elem.removeClass('paused');
 			if($('.camera_play',camera_thumbs_wrap).length){

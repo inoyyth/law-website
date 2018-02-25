@@ -43,6 +43,9 @@ $route['404_override'] = 'error404';
 
 $route['contact-us'] = 'contact_us';
 
+//member
+$route['register'] = 'member/register';
+
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

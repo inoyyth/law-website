@@ -166,7 +166,7 @@ $(document).ready(function(){
         }if(param==="15"){
             $("#menu_value").attr('readonly','true');
             $("#menu_value").val('-');
-            $("#kodex").val("sign_in");
+            $("#kodex").val("sign-in");
             $("#linkx").hide();
         }if(param==="16"){
             $("#menu_value").attr('readonly','true');
