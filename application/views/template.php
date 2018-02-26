@@ -120,41 +120,36 @@
   	</script>	
     <div class="slider">
       <div class="camera_wrap">
-          <div data-src="<?php echo base_url('themes/website/images/slide1.jpg');?>"></div>
-          <div data-src="<?php echo base_url('themes/website/images/slide2.jpg');?>">
+        <?php foreach($slider as $kSlider=>$vSlider) { ?>
+          <div data-src="<?php echo base_url('adminuicon/assets/elFinder-2.1.24/'.$vSlider['image_slider']);?>">
             <div class="camera_caption">
               <div class="container">
                 <div class="row">
                   <div class="span12">
-                    <h2>Find</h2> <h3>the optimal<br/> solution</h3>
-                  </div>
-                </div>
-              </div> 
-            </div>     
-          </div>
-          <div data-src="<?php echo base_url('themes/website/images/slide3.jpg');?>">
-            <div class="camera_caption">
-              <div class="container">
-                <div class="row">
-                  <div class="span12">
-                    <h2>optimal</h2> <h3>communication<br/> solutions</h3>
+                    <?php echo $vSlider['slider_description'];?>
                   </div>
                 </div>
               </div>    
             </div>
           </div>
-          <div data-src="<?php echo base_url('themes/website/images/slide4.jpg');?>">
-            <div class="camera_caption">
-              <div class="container">
-                <div class="row">
-                  <div class="span12">
-                    <h2>optimal</h2> <h3>communication<br/> solutions</h3>
-                  </div>
-                </div>
-              </div>      
-            </div>
-          </div>
+        <?php } ?>
       </div>
+    <?php 
+      } 
+      if ($this->router->fetch_class() == "contact_us") { 
+    ?>
+    <div id="top-area-contact">
+      <div class="map">
+        <iframe src="<?php echo $data['map'];?>"></iframe>
+        <div class="container">
+            <div class="row">
+                <div class="span12"> 
+                    <div class="span12">
+                    </div>
+                </div>
+            </div>
+        </div>            
+    </div>
     <?php } ?>
   </div>
 </header>

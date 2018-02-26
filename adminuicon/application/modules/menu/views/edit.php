@@ -198,7 +198,7 @@ $(document).ready(function(){
     }if(menu_type==="11"){
         $("#menu_value").attr('readonly','true');
         $("#menu_value").val('-');
-        $("#kodex").val("contact_us");
+        $("#kodex").val("contact-us");
         $("#linkx").hide();
     }if(menu_type==="12"){
         var linkx = "'<?=base_url();?>menu/subcategory_article'";   
@@ -307,7 +307,7 @@ $(document).ready(function(){
         }if(param==="11"){  
             $("#menu_value").attr('readonly','true');
             $("#menu_value").val('-');
-            $("#kodex").val("contact_us");
+            $("#kodex").val("contact-us");
             $("#linkx").hide();
         }if(param==="12"){
             var linkx = "'<?=base_url();?>menu/subcategory_article'";   
