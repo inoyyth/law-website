@@ -556,7 +556,7 @@ class Multi_menu {
 	{
 		//$segment = $this->ci->uri->segment($this->uri_segment);
 		$segment = $this->ci->router->fetch_class();
-
+		die($segment);
 		if ( ($this->item_active != '' && $slug == $this->item_active && empty($segment)) || $slug == $segment) 
 		{
 			$doc = new DOMDocument();
