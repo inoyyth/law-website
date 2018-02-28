@@ -13,8 +13,9 @@ class Home extends MX_Controller{
 		$data['hot_product'] = $this->m_home->getData('product_general',array('status'=>'Y','hot_product'=>1),'create_date','desc',3)->result_array();
         $data['slider']=$this->m_home->getData('slider',array('status'=>'Y'),'sys_create_date','desc',19)->result_array();
         $data['index_article']=$this->m_home->getData('article',array('index_article'=>'1'),'sys_create_date','desc',1)->row_array();
-		$data['customer_comment'] = $this->m_home->getData('customer_comment',array('status'=>'Y'),'sys_create_date','desc',3)->result_array();
-		$data['view']="main"; //var_dump($data['slider']);die;
+		#$data['customer_comment'] = $this->m_home->getData('customer_comment',array('status'=>'Y'),'sys_create_date','desc',3)->result_array();
+		$data['contact'] = $this->db->get('contact')->row_array();
+		$data['view']="main"; 
         $this->load->view('template',$data);
     }
 	

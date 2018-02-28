@@ -9,7 +9,9 @@ class M_home extends MX_Controller{
     public function getData($table,$where,$field_order,$order,$limit){
         $this->db->select("*");
         $this->db->from($table);
-        $this->db->where($where);
+        if(count($where) > 0) {
+            $this->db->where($where);
+        }
         $this->db->order_by($field_order,$order);
         $this->db->limit($limit);
         return $this->db->get(0,$limit);

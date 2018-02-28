@@ -43,6 +43,14 @@
 <header>
     <div class="container">
     	<div class="row">
+          <div class="span12" style="text-align:right;">
+          <div id="google_translate_element"></div>
+            <script type="text/javascript">
+            function googleTranslateElementInit() {
+              new google.translate.TranslateElement({pageLanguage: 'id', includedLanguages: 'en,id', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+            }
+            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+          </div>
         	<div class="span12">
             	<div class="clearfix">
                     <div class="clearfix header-block-pad">
@@ -51,7 +59,7 @@
                             <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''"  >
                             <a href="#" onClick="document.getElementById('search-form').submit()"></a>
                         </form>
-                        <span class="contacts">Call Us: <span>+1 234 567 89 00</span><br>E-mail: <a href="#">email@companyname.com</a></span>
+                        <span class="contacts">Call Us: <span><?php echo $contact['telephone'];?></span><br>E-mail: <a href="mailto:<?php echo $contact['email'];?>"><?php echo $contact['email'];?></a></span>
                     </div>
               </div>
            </div>
