@@ -9,10 +9,11 @@ class Article extends MX_Controller{
         
     function index($id){
         $this->session->unset_userdata('search_sr');
-        $data['detail']=$this->db->query("select * from article where id='$id'")->row();
+        $data['detail']=$this->db->query("select * from article where id='$id'")->row_array();
+        $data['subcategory'] = $this->db->get_where('article_subcategory', array('id'=>$data['detail']['id_subcategory']))->row_array();
         $data['list_category']=$this->db->query("select * from article_category where status='Y'")->result();
         $data['list_article']=$this->db->query("select * from article where status='Y' ORDER BY RAND() limit 6")->result();
-        
+
         $data['view']="main";
         $this->load->view('template',$data);
     }

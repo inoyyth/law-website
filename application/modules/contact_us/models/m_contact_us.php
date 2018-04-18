@@ -9,7 +9,7 @@ class M_contact_us extends CI_Model{
             'inquiry_message' => $this->input->post('subject'),
             'description' => $this->input->post('message'),
             'inquiry_phone' => 0,
-            'inquiry_address' => '-',
+            'inquiry_address' => 'INQUIRY',
             'sys_create_date' => date('Y-m-d H:i:s')
         );
         

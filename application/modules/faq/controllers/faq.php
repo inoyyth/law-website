@@ -8,9 +8,7 @@ class faq extends MX_Controller{
     }
         
     function index(){
-        $data['faq']=$this->db->query("select * from faq where status='Y' order by position asc")->result();
-        $data['list_category']=$this->db->query("select * from article_category where status='Y'")->result();
-        $data['list_article']=$this->db->query("select * from article where status='Y' ORDER BY RAND() limit 6")->result();
+        $data['faq']=$this->db->query("select * from faq where status='Y' order by position asc")->result_array();
         $data['view']="main";
         $this->load->view('template',$data);
     }

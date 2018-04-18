@@ -17,9 +17,9 @@ class Contact_us extends MX_Controller{
     function save_inquiry() {
         if ($_POST) {
             if ($this->m_contact_us->save_inquiry()) {
-                $response = array('code' => 200, 'message' => 'Thanks, your inquiry has been submit');
+                $response = array('code' => 200, 'message' => 'Thanks, your message has been submit');
             } else {
-                $response = array('code' => 500, 'message' => 'Sorry inquiry is failed, try again later');
+                $response = array('code' => 500, 'message' => 'Sorry message is failed, try again later');
             }
             echo json_encode($response);
         } else {

@@ -6,6 +6,7 @@ class Newsletter extends MX_Controller{
         if($this->session->userdata('logged_in_admin')==false){
             redirect('login');    
         }
+        $this->load->library('email');
         $this->load->model('m_newsletter');
         $this->load->model('main_model');
     }
@@ -123,29 +124,74 @@ class Newsletter extends MX_Controller{
         $list_email=$this->db->query("select * from newsletter_email")->result();
         $data['message']=$news->news_description;
         foreach($list_email as $list_emailx){
-            $ci = get_instance();
-            $ci->load->library('email');
-            $config['protocol'] = "smtp";
-            $config['smtp_host'] = "ssl://smtp.gmail.com";
-            $config['smtp_port'] = "465";
-            $config['smtp_user'] = "supri170845@gmail.com"; 
-            $config['smtp_pass'] = "170845inoy";
-            $config['charset'] = "utf-8";
-            $config['mailtype'] = "html";
-            $config['newline'] = "\r\n";
-            //$config['protocol'] = 'sendmail';
-            $config['wordwrap'] = TRUE;
-            $ci->email->initialize($config);
+            $this->email->from('info@niodedd.id', 'NiodeDD Lawyer And Consultant');
+            $this->email->to($list_emailx->email);
 
-            $ci->email->from('info@desalite.co.id', 'PT.Desalite');
-            $ci->email->to($list_emailx->email);
-            $ci->email->subject($news->news_title);
-            //$ci->email->cc('fhenny@time.co.id');
-            $ci->email->message($this->load->view('news_mail',$data,TRUE));
-            $ci->email->send();
+            $this->email->subject($news->news_title);
+            $this->email->message($this->load->view('news_mail',$data,TRUE));
+
+            $this->email->send();
         }
         $data_update=array('send_count'=>($news->send_count + 1));
         $this->main_model->update('newsletter_news','id',$id_news,$data_update);
         return true;
     }
+
+
+    function index_mail_list(){
+        $this->session->unset_userdata('page_sr');
+        $this->session->unset_userdata('email_sr');
+        $this->session->unset_userdata('date_sr');
+        $config['base_url'] = base_url().'newsletter/index_mail_list/';
+        $config['total_rows'] = $this->db->query("select * from subscribe_email order by id desc")->num_rows();
+        $config['per_page'] = 10;
+        $config['num_links'] = 2;
+        $config['uri_segment'] = 3;
+        $config['first_page'] = 'Awal';
+        $config['last_page'] = 'Akhir';
+        $config['next_page'] = '&laquo;';
+        $config['prev_page'] = '&raquo;';
+        $pg = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0 ;
+        //inisialisasi config
+        $this->pagination->initialize($config);
+        //buat pagination
+        $data['halaman'] = $this->pagination->create_links();
+        //tamplikan data
+        $data['total_data']=$this->db->query("select * from subscribe_email order by id desc")->num_rows();
+        $data['data'] = $this->db->query("select * from subscribe_email order by id desc limit ".$pg.",".$config['per_page']."")->result();
+        $data['view']='mail_list';
+        $this->load->view('template',$data);
+    }
+    
+    public function search_mail_list()
+	{
+            if($_POST){
+                $page_sr = ($this->input->get_post('page_sr')==""?$this->session->unset_userdata('page_sr'):$this->main_model->handler0('page_sr',$this->input->get_post('page_sr', TRUE)));
+                $email_sr = ($this->input->get_post('email_sr')==""?$this->session->unset_userdata('email_sr'):$this->main_model->handler0('email_sr',$this->input->get_post('email_sr', TRUE)));
+                $date_sr = ($this->input->get_post('date_sr')==""?$this->session->unset_userdata('date_sr'):$this->main_model->handler0('date_sr',$this->input->get_post('date_sr', TRUE)));
+            }else{
+                $page_sr = $this->main_model->handler0('page_sr',$this->input->get_post('page_sr', TRUE));
+                $email_sr = $this->main_model->handler0('email_sr',$this->input->get_post('email_sr', TRUE));
+                $date_sr = $this->main_model->handler0('date_sr',$this->input->get_post('date_sr', TRUE));
+            }
+            //echo $id_sr,$name_sr,$status_sr;
+            $limit = ($this->uri->segment(3) > 0)?$this->uri->segment(3):0;
+
+            $config['base_url'] = base_url() .'newsletter/search_mail_list';
+            $config['total_rows'] = $this->db->query("select * from subscribe_email where email like '%$email_sr%' and subscribe_date like '%$date_sr%' order by id desc")->num_rows();
+            $config['per_page'] = ($page_sr > 0)?$page_sr:10;
+            $config['uri_segment'] = 3;
+            $choice = $config['total_rows']/$config['per_page'];
+            $config['num_links'] = 2;		
+            $this->pagination->initialize($config);
+
+            $data['data'] = $this->db->query("select * from subscribe_email where email like '%$email_sr%' and subscribe_date like '%$date_sr%' order by id desc limit ".$limit.",".$config['per_page']."")->result();
+            $data['halaman'] = $this->pagination->create_links();
+            $data['total_data']= $this->db->query("select * from subscribe_email where email like '%$email_sr%' and subscribe_date like '%$date_sr%' order by id desc")->num_rows();
+            $data['page_sr'] = $page_sr;
+            $data['email_sr'] = $email_sr;
+            $data['date_sr'] = $date_sr;
+            $data['view']='mail_list_search';
+            $this->load->view('template',$data);
+	}
 }

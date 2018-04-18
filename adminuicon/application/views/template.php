@@ -129,15 +129,15 @@ if ($this->session->userdata('logged_in_admin')){
 			
 			<li><a href="<?=base_url();?>customer_inquiry"><i class="fa fa-bar-chart-o"></i> CUSTOMER INQUIRY</a></li>
 			
-			<li><a href="<?=base_url();?>sales_order"><i class="fa fa-bar-chart-o"></i> SALES ORDER</a></li>
+			<li><a href="<?=base_url();?>customers_report"><i class="fa fa-bar-chart-o"></i> CUSTOMER LIST</a></li>
             
-			<li class="dropdown active">
+			<!--<li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> PRODUCT <b class="caret"></b></a>
 				<ul class="dropdown-menu">
 					<li><a href="<?=base_url();?>category_management">CATEGORY PRODUCT</a></li>
 					<li><a href="<?=base_url();?>product">PRODUCT</a></li>
 				</ul>
-            </li>
+            </li>-->
 			
             <li class="dropdown active">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-caret-square-o-down"></i> ARTICLES <b class="caret"></b></a>
@@ -241,6 +241,7 @@ if ($this->session->userdata('logged_in_admin')){
 	<script src="<?=base_url();?>assets/themes/panel/jquery-ui/development-bundle/ui/jquery.ui.datepicker.js"></script>
 	<script src="<?=base_url();?>assets/themes/panel/jquery-ui/development-bundle/ui/jquery.ui.tabs.js"></script>
 	<script src="<?=base_url();?>assets/themes/panel/jquery-ui/development-bundle/ui/jquery.ui.tooltip.js"></script>
+<script type="text/javascript" src="<?php echo base_url('assets/tabulator-master/dist/js/tabulator.min.js');?>"></script>
         
         
         

@@ -296,7 +296,7 @@ $config['global_xss_filtering'] = true;
 | 'csrf_cookie_name' = The cookie name
 | 'csrf_expire' = The number in seconds the token should expire.
 */
-$config['csrf_protection'] = false;
+$config['csrf_protection'] = true;
 $config['csrf_token_name'] = 'token';
 $config['csrf_cookie_name'] = 'monster_cookie';
 $config['csrf_expire'] = 7200;

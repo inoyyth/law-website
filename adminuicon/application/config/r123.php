@@ -1,2 +1,2 @@
 <?php
-$config['home_slider_size'] = '1676 x 490 px';
+$config['home_slider_size'] = '1894 x 931 px';

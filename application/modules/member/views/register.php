@@ -1,112 +1,148 @@
-<div class="row clearfix divider3">
-    <!-- start sign up -->
-    <div class="span6">
-        <div id="alert-signup" class="alert" style="display:none;"></div>
-        <h2>Sign Up</h2>
-        <div id="note"></div>
-        <div id="fields" class="contact-form">
-            <?php 
-                echo form_open('member/save_register',array(
-                    'id' => 'form-register',
-                    'class' => 'form-horizontal'
-                ));
-            ?>
-            <div class="control-group">
-                <label class="control-label" for="inputName">Your first name:</label>         
-                <?php 
-                    echo form_input(array(
-                        'id' => 'first_name',
-                        'name' => 'first_name',
-                    ));
-                ?>
+<section id="contact" class="contact">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="title-box">
+                    <p class="section-subtitle">Hi, Member</p>
+                    <h2 class="section-title">If you a member you can login, if not you can register</h2>
+                </div>
             </div>
-            <div class="control-group">
-                <label class="control-label" for="inputName">Your last name:</label>
-                <?php 
-                    echo form_input(array(
-                        'id' => 'last_name',
-                        'name' => 'last_name'
-                    ));
-                ?>
+            <!-- start sign up -->
+            <div class="col-sm-6">
+                <div id="alert-signup" class="alert" style="display:none;"></div>
+                <h2>Sign Up</h2>
+                <div id="note"></div>
+                <div id="fields" class="contact-form">
+                    <?php 
+                        echo form_open('member/save_register',array(
+                            'id' => 'form-register',
+                            'class' => 'form-horizontal'
+                        ));
+                    ?>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            First Name
+                        </span>          
+                        <?php 
+                            echo form_input(array(
+                                'id' => 'first_name',
+                                'name' => 'first_name',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Last Name
+                        </span>
+                        <?php 
+                            echo form_input(array(
+                                'id' => 'last_name',
+                                'name' => 'last_name',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Email
+                        </span>
+                        <?php 
+                            echo form_input(array(
+                                'id' => 'email',
+                                'name' => 'email',
+                                'type' => 'email',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Phone
+                        </span>
+                        <?php 
+                            echo form_input(array(
+                                'id' => 'phone',
+                                'name' => 'phone',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Password
+                        </span>
+                        <?php 
+                            echo form_password(array(
+                                'id' => 'password',
+                                'name' => 'password',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Confirm Password
+                        </span>
+                        <?php 
+                            echo form_password(array(
+                                'id' => 'confirm_password',
+                                'name' => 'confirm_password',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>      
+                    <button type="submit" class="btn btn_ btn-small_" id="myButton" data-loading-text="Loading...">submit</button>
+                    <?php echo form_close();?>
+                </div> 
             </div>
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Your Email:</label>
+            <!-- end sign up -->
+            <!-- start sign in -->
+            <div class="col-sm-6">
+                <div id="alert-login" class="alert" style="display:none;"></div>
+                <h2>Login</h2>
+                <div id="note"></div>
+                <div id="fields" class="contact-form">
                 <?php 
-                    echo form_input(array(
-                        'id' => 'email',
-                        'name' => 'email',
-                        'type' => 'email'
-                    ));
-                ?>
+                        echo form_open('member/login',array(
+                            'id' => 'form-login',
+                            'class' => 'form-horizontal'
+                        ));
+                    ?>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Email
+                        </span>         
+                        <?php 
+                            echo form_input(array(
+                                'id' => 'username',
+                                'name' => 'username',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>
+                    <div class="input-group">      
+                        <span class="input-group-addon">
+                            Password
+                        </span>
+                        <?php 
+                            echo form_password(array(
+                                'id' => 'password',
+                                'name' => 'password',
+                                'class' => 'form-control'
+                            ));
+                        ?>
+                    </div>    
+                    <button type="submit" class="btn btn_ btn-small_" id="myButtonLogin" data-loading-text="Loading...">submit</button>
+                    <?php echo form_close();?>
+                </div>    
+                <!-- end sign in -->
             </div>
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Your Phone:</label>
-                <?php 
-                    echo form_input(array(
-                        'id' => 'phone',
-                        'name' => 'phone'
-                    ));
-                ?>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Password:</label>
-                <?php 
-                    echo form_password(array(
-                        'id' => 'password',
-                        'name' => 'password'
-                    ));
-                ?>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputEmail">Confirm Password:</label>
-                <?php 
-                    echo form_password(array(
-                        'id' => 'confirm_password',
-                        'name' => 'confirm_password'
-                    ));
-                ?>
-            </div>      
-            <button type="submit" class="btn btn_ btn-small_" id="myButton" data-loading-text="Loading...">submit</button>
-            <?php echo form_close();?>
-        </div> 
+        </div>	  
     </div>
-    <!-- end sign up -->
-    <!-- start sign in -->
-    <div class="span6">
-        <div id="alert-login" class="alert" style="display:none;"></div>
-        <h2>Login</h2>
-        <div id="note"></div>
-        <div id="fields" class="contact-form">
-        <?php 
-                echo form_open('member/login',array(
-                    'id' => 'form-login',
-                    'class' => 'form-horizontal'
-                ));
-            ?>
-            <div class="control-group">
-                <label class="control-label" for="inputName">Email:</label>         
-                <?php 
-                    echo form_input(array(
-                        'id' => 'username',
-                        'name' => 'username',
-                    ));
-                ?>
-            </div>
-            <div class="control-group">
-                <label class="control-label" for="inputName">Password:</label>
-                <?php 
-                    echo form_password(array(
-                        'id' => 'password',
-                        'name' => 'password'
-                    ));
-                ?>
-            </div>    
-            <button type="submit" class="btn btn_ btn-small_" id="myButtonLogin" data-loading-text="Loading...">submit</button>
-            <?php echo form_close();?>
-        </div>    
-        <!-- end sign in -->
-    </div>		  
 </div>
+<br>
+<br>
 <script type="text/javascript">
 $( document ).ready( function () {
     $( "#form-register" ).validate( {

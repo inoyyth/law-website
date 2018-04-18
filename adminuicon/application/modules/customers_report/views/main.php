@@ -2,15 +2,6 @@
     <li> Report</li>
     <li class="active"></i> Customer Orders</li>
 </ol>
-<div>
-    <form method="post" action="<?=base_url();?>customers_report/search" id="form2"/>
-        <i style="margin-top: -15px;margin-left: 1%;font-size: 10px;">From </i><input style="font-size: 10px;margin-bottom: 4px" name="from_sr" type="text" size="15" id="from" required/>
-
-        <i style="margin-top: -15px;margin-left: 1%;font-size: 10px;">To </i><input style="font-size: 10px;margin-top: -20px" name="to_sr" type="text" size="15" id="to" required/>
-
-        <input type="submit" value="Go!" style="font-size: 11px;" class="btn btn-default btn-xs">
-    </form>
-</div>
 <div class="panel panel-default">
     <div class="panel-heading">Customer Orders</div>
         <div class="panel-body">
@@ -31,10 +22,11 @@
                 <table class="table table-bordered table-hover table-striped tablesorter">
                     <thead>
                         <tr>
-                            <th style="text-align: center;">Customer ID <i class="fa fa-sort"></i></th>
-                            <th style="text-align: center;">Customer Name <i class="fa fa-sort"></i></th>
-                            <th style="text-align: center;">Register Date <i class="fa fa-sort"></i></th>
-                            <th style="text-align: center;">Total(IDR) <i class="fa fa-sort"></i></th>
+                            <th style="text-align: center;">ID <i class="fa fa-sort"></i></th>
+                            <th style="text-align: center;">First Name <i class="fa fa-sort"></i></th>
+                            <th style="text-align: center;">Last Name <i class="fa fa-sort"></i></th>
+                            <th style="text-align: center;">Email <i class="fa fa-sort"></i></th>
+                            <th style="text-align: center;">Mobile <i class="fa fa-sort"></i></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,10 +40,11 @@
                           $no++;
                     ?>
                         <tr>
-                            <td style="text-align: center;width: 10%;"><?php echo $data->cust_id; ?></td>
-                            <td><a href="<?=base_url();?>customers_report/invoice/<?=$data->id_cust;?>"><?php echo $data->firstname_custdetail." ".$data->lastname_custdetail; ?></a></td>
-                            <td style="text-align: center;width: 15%;"><?php echo tgl_indo(date("Y-m-d",strtotime($data->date_cust))); ?></td>
-                            <td style="text-align: right;"><?php echo formatrp($data->jum); ?></td>
+                            <td style="text-align: center;width: 10%;"><?php echo $data->id; ?></td>
+                            <td><?php echo $data->firstname_custdetail;?></td>
+                            <td><?php echo $data->lastname_custdetail;?></td>
+                            <td><?php echo $data->email_custdetail;?></td>
+                            <td><?php echo $data->mobile_custdetail;?></td>
                         </tr>
                       <?php }} ?>
                     </tbody>
@@ -59,9 +52,10 @@
                         <tr>
                             <form method="post" action="<?=base_url();?>customers_report/search" id="form1"/>
                                 <td><input name="id_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
-                                <td><input name="name_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
-                                <td><input name="date_sr" class="form-control datepicker" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
-                                <td></td>
+                                <td><input name="firstname_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
+                                <td><input name="lastname_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
+                                <td><input name="email_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
+                                <td><input name="mobile_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
                         </tr>
                     </tfoot>
                 </table>

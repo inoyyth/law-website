@@ -25,6 +25,7 @@
                         <tr>
                            <th style="text-align: center;">ID <i class="fa fa-sort"></i></th>
                             <th>Category <i class="fa fa-sort"></i></th>
+                            <th>Sub Category <i class="fa fa-sort"></i></th>
                             <th>Article <i class="fa fa-sort"></i></th>
                             <th>Status <i class="fa fa-sort"></i></th>
                             <th style="text-align: center;">Actions <i class="fa fa-sort"></i></th>
@@ -43,6 +44,7 @@
                         <tr>
                             <td style="text-align: center;"><?php echo $data->id; ?></td>
                             <td><?php echo $data->article_category_name; ?></td>
+                            <td><?php echo $data->article_subcategory_name; ?></td>
                             <td><?php echo $data->article_name; ?></td>
                             <td style="text-align: center;"><?php echo status($data->status); ?></td>
                             <td style="text-align: center;">
@@ -57,6 +59,7 @@
                             <form method="post" action="<?=base_url();?>article/search" id="form1"/>
                                 <td><input name="id_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
                                 <td><input name="category_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
+                                <td><input name="subcategory_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
                                 <td><input name="name_sr" class="form-control" style="width: 100%;" type="text" onkeyup="javascript:if(event.keyCode == 13){coba('form1');}else{return false;};"/></td>
                                 <td><select class="combo_search" name="status_sr" onchange="coba('form1');"/>
                                         <option value=""></option>

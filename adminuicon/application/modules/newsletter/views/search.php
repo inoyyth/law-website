@@ -2,6 +2,8 @@
     <li> Newsletter</li>
     <li class="active"></i> Newsletter Management</li>
 </ol>
+<input type="button" class="btn btn-primary btn-xs" style="margin-bottom: 5px;" value="Newsletter List" disabled />
+<input type="button" class="btn btn-primary btn-xs" style="margin-bottom: 5px;" value="Email List" onclick="window.location.replace('<?=base_url();?>newsletter/index_mail_list');" />
 <div class="panel panel-default">
     <div class="panel-heading">Newsletter</div>
         <div class="panel-body">

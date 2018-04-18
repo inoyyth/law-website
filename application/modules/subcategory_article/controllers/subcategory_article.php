@@ -7,7 +7,7 @@ class Subcategory_article extends MX_Controller{
         $this->load->model('main_model');
     }
         
-    function index($id){
+    /* function index($id){
         $this->session->unset_userdata('search_sr');
         $config['base_url'] = base_url().'sub_category_article/index/'.$id.'/'.$this->uri->segment(4);
         $config['total_rows'] = $this->db->query("select * from article where id_subcategory='$id' and status='Y' order by id desc")->num_rows();
@@ -60,6 +60,13 @@ class Subcategory_article extends MX_Controller{
         $data['list_article']=$this->db->query("select * from article where status='Y' ORDER BY RAND() limit 3")->result();
         $data['text']=$search_sr;
         $data['view']="search";
+        $this->load->view('template',$data);
+    } */
+
+    function index($id,$title) {
+        $data['subcategory_article'] = $this->db->get_where('article',array('id_subcategory'=>$id,'status'=>'Y'))->result_array();
+        $data['view']="main";
+        $data['title'] = $title;
         $this->load->view('template',$data);
     }
 }

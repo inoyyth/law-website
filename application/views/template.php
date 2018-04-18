@@ -1,229 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <title>Home</title>
-    <meta charset="utf-8">
-	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Your description">
-    <meta name="keywords" content="Your keywords">
-    <meta name="author" content="Your name">
-    <link rel="icon" href="<?php echo base_url('themes/website/images/favicon.ico');?>" type="image/x-icon">
-    <link rel="shortcut icon" href="<?php echo base_url('themes/website/images/favicon.ico');?>" type="image/x-icon" />
-    <link rel="stylesheet" href="<?php echo base_url('themes/website/css/bootstrap.css');?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url('themes/website/css/responsive.css');?>" type="text/css" media="screen">
-    <link rel="stylesheet" href="<?php echo base_url('themes/website/css/camera.css');?>" type="text/css" media="screen"> 
-    <link rel="stylesheet" href="<?php echo base_url('themes/website/css/style.css');?>" type="text/css" media="screen">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700' rel='stylesheet' type='text/css'>
-  	<script type="text/javascript" src="<?php echo base_url('themes/website/js/jquery.2.2.4.js');?>"></script>
-    <script src="<?php echo base_url('assets/jquery-validate/dist/jquery.validate.min.js');?>" type="text/javascript"></script>
-    <script type="text/javascript" src="<?php echo base_url('themes/website/js/jquery.easing.1.3.js');?>"></script>
-  	<script type="text/javascript" src="<?php echo base_url('themes/website/js/camera.js');?>"></script>
-    <script type="text/javascript" src="<?php echo base_url('themes/website/js/superfish.js');?>"></script>
-    <script src="<?php echo base_url('themes/website/js/jquery.ui.totop.js');?>" type="text/javascript"></script>
-    	
-  	<!--[if lt IE 8]>
-    		<div style='text-align:center'><a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg"border="0"alt=""/></a></div>  
-   	<![endif]-->
-    
-    <!--[if (gt IE 9)|!(IE)]><!-->
-    <!--<script type="text/javascript" src="<?php echo base_url('themes/website/js/jquery.mobile.customized.min.js');?>"></script>-->
-    <!--<![endif]-->
-    	<!--[if lt IE 9]>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:600' rel='stylesheet' type='text/css'>
-      <link href='http://fonts.googleapis.com/css?family=Open+Sans:700' rel='stylesheet' type='text/css'>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <link rel="stylesheet" href="css/docs.css" type="text/css" media="screen">
-      <link rel="stylesheet" href="css/ie.css" type="text/css" media="screen">
-    <![endif]-->
-</head>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
-<!--==============================Header=================================-->
-<header>
-    <div class="container">
-    	<div class="row">
-          <div class="span12" style="text-align:right;">
-          <div id="google_translate_element"></div>
-            <script type="text/javascript">
-            function googleTranslateElementInit() {
-              new google.translate.TranslateElement({pageLanguage: 'id', includedLanguages: 'en,id', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
-            }
-            </script><script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-          </div>
-        	<div class="span12">
-            	<div class="clearfix">
-                    <div class="clearfix header-block-pad">
-                        <h1 class="brand"><a href="index.html"><img src="i<?php echo base_url('themes/website/mages/logo.png');?>" alt=""></a><span>global communication solutions</span></h1>
-                        <form id="search-form" action="search.php" method="GET" accept-charset="utf-8" class="navbar-form" >
-                            <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''"  >
-                            <a href="#" onClick="document.getElementById('search-form').submit()"></a>
-                        </form>
-                        <span class="contacts">Call Us: <span><?php echo $contact['telephone'];?></span><br>E-mail: <a href="mailto:<?php echo $contact['email'];?>"><?php echo $contact['email'];?></a></span>
-                    </div>
-              </div>
-           </div>
-      </div>   
-    </div>
-    
-    <!--==============================Nav=================================-->          
-    <div id="nav_section">
-      <div class="container">
-        <div class="row">
-          <div class="span12">
-            <div class="navbar navbar_ clearfix">
-              <div class="navbar-inner navbar-inner_">
-                  <div class="container">
-                      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse_">MENU</a>                                                   
-                      <div class="nav-collapse nav-collapse_ collapse">
-                      <?php 
-                          echo $this->multi_menu->render(
-                                array(
-                                  'nav_tag_open'        => '<ul class="nav sf-menu">',            
-                                  'parentl1_tag_open'   => '<li class="li-first">',
-                                  'parentl1_anchor'     => '<a href="%s">%s</a>',
-                                  'parent_tag_open'     => '<li class="sub-menu">',
-                                  'parent_anchor'       => '<a href="%s">%s</a>',
-                                  'children_tag_open'   => '<ul>'
-                              )
-                          ); ?>
-                          <!--<ul class="nav sf-menu">
-                            <li class="active li-first"><a href="index.html">Home</a></li>
-                            <li class="sub-menu"><a href="index-1.html">about</a>
-                              <ul>
-                                <li><a href="#">Our team</a></li>
-                                <li><a href="#">Company Profile</a></li>
-                                <li><a href="#">News and events</a></li>
-                              </ul>
-                            </li>
-                            <li><a href="index-2.html">services</a></li>
-                            <li><a href="index-3.html">partners</a></li>
-                            <li><a href="index-4.html">projects</a></li>
-                            <li><a href="index-5.html">contacts</a></li>
-                          </ul>-->
-                      </div>
-                      <ul class="social-icons">
-                          <li><a href="#"><img src="<?php echo base_url('themes/website/images/twitter.gif');?>" alt=""></a></li>
-                          <li><a href="#"><img src="<?php echo base_url('themes/website/images/flickr.gif');?>" alt=""></a></li>
-                          <li><a href="#"><img src="<?php echo base_url('themes/website/images/facebook.gif');?>" alt=""></a></li>
-                          <li><a href="#"><img src="<?php echo base_url('themes/website/images/linkedin.gif');?>" alt=""></a></li>
-                          <li><a href="#"><img src="<?php echo base_url('themes/website/images/youtube.gif');?>" alt=""></a></li>
-                      </ul>
-                  </div>
-              </div>
+        <title>NiodeDD.id | Lawyers And Consultant</title>
+
+        <link href="<?php echo base_url();?>themes/template/assets/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/css/bootstrap-select.min.css">
+        <link href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
+        <script src="<?php echo base_url('assets/jquery-validate/dist/jquery.validate.min.js');?>" type="text/javascript"></script>
+        <link href="<?php echo base_url();?>themes/template/assets/css/owl.carousel.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>themes/template/assets/css/owl.carousel.theme.min.css" rel="stylesheet">
+        <link href="<?php echo base_url();?>themes/template/assets/css/main.css" rel="stylesheet">
+        <script src="<?php echo base_url();?>themes/template/assets/js/jquery-1.12.3.min.js"></script>
+
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body data-spy="scroll" data-target="#main-navbar">
+
+    <!-- NavigationBar Section -->
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">
+                <img class="img-responsive" src="<?php echo base_url();?>themes/template/assets/images/logo.png" alt="logo">
+                </a>
             </div>
-          </div>
-        </div>   
-      </div>
-    </div>
-    <!--==============================End Nav=================================-->
 
-    <!--==============================Slider=================================--> 
-    <?php 
-    if ($this->router->fetch_class() == "home") { ?>
-    <script>
-        $(document).ready(function(){   
-                jQuery('.camera_wrap').camera();
-          });    
-  	</script>	
-    <div class="slider">
-      <div class="camera_wrap">
-        <?php foreach($slider as $kSlider=>$vSlider) { ?>
-          <div data-src="<?php echo base_url('adminuicon/assets/elFinder-2.1.24/'.$vSlider['image_slider']);?>">
-            <div class="camera_caption">
-              <div class="container">
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="main-navbar">
+                <?php 
+                    echo $this->multi_menu->render(
+                        array(
+                            'nav_tag_open'        => '<ul class="nav navbar-nav navbar-right">',            
+                            'parentl1_tag_open'   => '<li>',
+                            'parentl1_anchor'     => '<a href="%s">%s</a>',
+                            'parent_tag_open'     => '<li>',
+                            'parent_anchor'       => '<a href="%s">%s</a>',
+                            'children_tag_open'   => '<ul>'
+                        )
+                    ); 
+                ?>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>
+
+        <?php echo $this->load->view($view);?>
+
+         <!-- Subscribe -->
+         <div id="subscribe"  class="subscribe">
+            <div class="container">
                 <div class="row">
-                  <div class="span12">
-                    <?php echo $vSlider['slider_description'];?>
-                  </div>
-                </div>
-              </div>    
-            </div>
-          </div>
-        <?php } ?>
-      </div>
-    <?php 
-      } 
-      if ($this->router->fetch_class() == "contact_us") { 
-    ?>
-    <div id="top-area-contact">
-      <div class="map">
-        <iframe src="<?php echo $data['map'];?>"></iframe>
-        <div class="container">
-            <div class="row">
-                <div class="span12"> 
-                    <div class="span12">
+                    <div class="col-sm-6">
+                        <h2>Subscribe to our weekly newsletter</h2>
+                        <p>*Dont worry, we dont spam</p>
+                    </div>
+                    <div class="col-sm-6">
+                        <?php if ($this->session->flashdata('error_subscribe')) { ?>
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <?php echo $this->session->flashdata('error_subscribe'); ?>
+                            </div>
+                        <?php } ?>
+                        <?php if ($this->session->flashdata('success_subscribe')) { ?>
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <?php echo $this->session->flashdata('success_subscribe'); ?>
+                            </div>
+                        <?php } ?>
+                        <form class="subscribe-form" method="post" action="<?php echo site_url('home/save_email_subscribe');?>">
+                            <div class="form-group">
+                                <label class="sr-only" for="subscriber-email">Email address</label>
+                                <div class="input-group">
+                                    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+                                    <input type="email" name="email" required class="form-control" placeholder="Email">
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="submit">Go!</button>
+                                    </span>
+                                </div><!-- /input-group -->
+                            </div><!--/input-grpup-->
+                        </form>
+
+                        <!-- SUCCESS OR ERROR MESSAGES -->
+                        <div id="subscription-response"></div>
                     </div>
                 </div>
             </div>
-        </div>            
-    </div>
-    <?php } ?>
-  </div>
-</header>
-
-<!--==============================Content=================================--> 
-<section id="content" class="main-content">
-  <div class="container">
-    <?php $this->load->view($view); ?>
-  </div>
-</section>
-
-
-<!--==============================Bottom content=================================--> 
-<aside id="bottom-content">
-  <div class="container">
-    <div class="row">
-        <div class="clearfix">
-          <div class="span3">
-            <h5>About Worldcom</h5>
-            <p class="lead">Maecenas sit amet augue.</p>
-          </div>
-          <div class="span9">
-            <p>Praesent vestibulum molestie lacus. Aenean nonummy hendrerit mauris. Phasellus porta. Fusce suscipit varius mi. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nulla dui. Fusce feugiat malesuada odio. Morbi nunc odio, gravida at, cursus nec, luctus a, lorem. Maecenas tristique orci ac sem. Duis ultricies pharetra magna. Donec accumsan malesuada orci. Donec sit amet eros. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Mauris fermentum dictum magna. Sed laoreet aliquam leo.   <a href="#"> >>> </a></p>
-          </div>
         </div>
 
-        <div class="padbotcontent"></div> 
-
-        <div class="clearfix">
-          <div class="span3">
-            <h5>Our Partners</h5>
-            <p class="lead">Maecenas sit amet augue.</p>
-          </div>
-          <div class="span9">
-            <img src="<?php echo base_url('themes/website/images/partners.jpg');?>">
-          </div>
-        </div>
-   
-    </div>
-  </div>    
-</aside>
-
-<!--==============================Footer=================================--> 
-<footer>
-   <div class="container">
-    <div class="row">
-      <div class="span8">
-        <ul class="footer-menu">
-            <li><a href="index.html" class="current">home</a></li>
-            <li><a href="index-1.html">about</a></li>
-            <li><a href="index-2.html">services</a></li>
-            <li><a href="index-3.html">partners</a></li>
-            <li><a href="index-4.html">projects</a></li>
-            <li><a href="index-5.html">contact us</a></li>
-        </ul>
-      </div>
-
-      <div class="span4">
-        <p class="phone">+1 123<span style="display:none">no skype addon</span> 456 78 90</p>
-      </div>
-      <div class="span12">
-        WORLDCOM  ©  2012. ALL RIGHTS RESERVED. &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;   <a href="index-6.html">Privacy Policy</a> <!-- {%FOOTER_LINK} -->
-      </div>
-    </div>
-   </div>
-</footer>
-<script type="text/javascript" src="<?php echo base_url('themes/website/js/bootstrap.js');?>"></script>
-</body>
+        <!-- Footer -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <p>
+                                @ niodedd.id
+                            </p>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="footer-social">
+                                <a href="#"><i class="ion-social-facebook"></i></a>
+                                <a href="#"><i class="ion-social-linkedin-outline"></i></a>
+                                <a href="#"><i class="ion-social-skype-outline"></i></a>
+                                <a href="#"><i class="ion-social-twitter"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        
+        <!-- Scripts -->
+        <script src="<?php echo base_url();?>themes/template/assets/js/bootstrap.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.10.0/js/bootstrap-select.min.js"></script>
+        <script src="<?php echo base_url();?>themes/template/assets/js/owl.carousel.min.js"></script>
+        <script src="<?php echo base_url();?>themes/template/assets/js/script.js"></script>
+        <script src="<?php echo base_url('assets/jquery-validate/dist/jquery.validate.min.js');?>" type="text/javascript"></script>
+        <script>
+            $("#carousel").carousel();
+        </script>
+    </body>
 </html>
